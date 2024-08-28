@@ -1,0 +1,26 @@
+<e-link src="./ServiceTemplatesFilterForm.less"/>
+<div class="eaEsoServiceTemplates-wFilterForm">
+    <e-element src="layouts/Form" e-id="esoServiceTemplates-filterForm">
+        <form>
+
+            <field label="{{columnHeaders.SERVICE_TEMPLATE_NAME}}" name="name">
+                <text
+                {{#if data.name}}value="{{data.name}}"{{/if}} />
+            </field>
+            <field label="{{columnHeaders.SERVICE_TEMPLATE_FILE_NAME}}" name="service_template_file_name">
+                <text
+                {{#if data.service_template_file_name}}value="{{data.service_template_file_name}}"{{/if}} />
+            </field>
+            <field label="{{columnHeaders.UP_LOAD_TIME}}" name="upload_time">
+                <text
+                {{#if data.upload_time}}value="{{data.upload_time}}"{{/if}} />
+            </field>
+            <field label="{{columnHeaders.DESCRIPTION}}" name="description">
+                <text
+                {{#if data.description}}value="{{data.description}}"{{/if}} />
+            </field>
+
+        </form>
+    </e-element>
+</div>
+

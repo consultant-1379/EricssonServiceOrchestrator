@@ -1,0 +1,60 @@
+Prerequisite
+-------------
+Docker is running.
+TOSCAO service is running in a docker container @ http://192.168.99.100:7001 (if not using docker-compose)
+
+
+(NOTE: for latest TOSCAO: docker pull armdocker.rnd.ericsson.se/proj-tosca_o/toscao:1.0.1 first)
+
+Build Image and Deploy Container
+--------------------------------
+cd eso-proto-server/root/eso-service/eso-service-rest
+docker build -t eso-service-1.0:latest .
+docker run -d -p 192.168.99.100:8081:8081 -e "TOSCAO_HOST=http://192.168.99.100:7001" eso-service-1.0:latest
+
+If not already done in Docker then increase memory required for datalake
+------------------------------------------------------------------------
+docker-machine ssh default
+sudo sysctl -w vm.max_map_count=262144
+
+
+Using docker-compose
+---------------------
+docker-compose up
+
+To view ESO log in the container
+--------------------------------
+docker exec -it <containerid> /bin/bash
+tail -f eso/esodata/deployments/logs/eso.log
+
+Test
+----
+From a browser or using curl verify:
+
+GET: http://192.168.99.100:8081/eso-services
+Hello! from Ericsson Service Orchestrator
+
+GET: http://192.168.99.100:8081/eso-services/blueprints
+{
+  "blueprints": []
+}
+
+GET: http://192.168.99.100:8081/eso-services/deployments
+{}
+
+Create a Service Model (Blueprint) in TOSCAO
+--------------------------------------------
+
+cd ../blueprints
+curl --form "file=@nslcm.yaml" --form name=nslcm_1 http://192.168.99.100:7001/toscao/api/v2.0/service-models
+
+cd ../nslcm-plugin/src/main/python/
+curl --form "plugin_file=@nslcm_plugin-1.0-py27-none-any.wgn" http://192.168.99.100:7001/toscao/api/v2.0/plugins
+
+Verify blueprint is visible in ESO:
+GET: http://192.168.99.100:8081/eso-services/blueprints
+{
+  "blueprints": [
+    "nslcm_1"
+  ]
+}

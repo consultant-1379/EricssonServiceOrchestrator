@@ -1,0 +1,35 @@
+UIConfiguration:
+
+    nodeViewer:
+
+        columnDefinition:
+            basedOnAttribute: node_type
+            columns:
+                - name: VPN
+                  attributeValues:
+                      - type: ericsson.nodes.infra
+                        icon: vpn
+                        colour: grey
+                - name: External Nodes
+                  attributeValues:
+                      - type: ericsson.nodes.VRF
+                        icon: vpn
+                        colour: grey
+                      - type: ericsson.nodes.external
+                        icon: dns
+                        colour: grey
+                - name: Dedicated Nodes
+                  attributeValues:
+                      - type: ericsson.nodes.MME
+                        icon: default
+                        colour: blue
+                      - type: ericsson.nodes.EPG
+                        icon: epg
+                        colour: blue
+                - name: Dedicated Nodes
+                  attributeValues:
+                      - type: subnet
+                        icon: default
+                        colour: blue
+
+

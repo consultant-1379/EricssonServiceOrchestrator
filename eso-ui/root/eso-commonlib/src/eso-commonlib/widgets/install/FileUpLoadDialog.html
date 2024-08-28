@@ -1,0 +1,42 @@
+<e-link src="./FileUpLoadDialog.less"/>
+<div class="elEsoCommonlib-wInstall">
+    <div class="elEsoCommonlib-wInstall-inlineMessageHolder"></div>
+    <div class="elEsoCommonlib-wInstall-content">
+
+        <form class="ebForm elEsoCommonlib-wInstall-form" method="post" enctype="multipart/form-data">
+            {{#if isShowingNameField}}
+            <div class="ebForm-block eb_wMargin">
+                <div class="ebLabel elEsoCommonlib-wInstall-nameHolder">
+                    <div class="elEsoCommonlib-wInstall-nameLabel ebLabel-text ebLabel-text_required">{{NAME}}</div>
+                    <div class="ebLabel-field">
+                        <input type="text" name="name" class="elEsoCommonlib-wInstall-nameTextField ebInput ebInput_width_xLong " placeholder="{{NAME_PLACEHOLDER}}" value=""/>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            {{#if isShowingDescriptionField}}
+            <div class="ebForm-block eb_wMargin">
+                <div class="ebLabel elEsoCommonlib-wInstall-descriptionHolder">
+                    <div class="elEsoCommonlib-wInstall-descriptionLabel ebLabel-text">{{DESCRIPTION}}</div>
+                    <div class="ebLabel-field">
+                        <input type="text" name="description" class="elEsoCommonlib-wInstall-descriptionTextField ebInput ebInput_width_xLong "
+                               placeholder="{{DESCRIPTION_PLACEHOLDER}}" value=""
+                                />
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            <div class="ebForm-block eb_wMargin">
+                <div class="ebLabel elEsoCommonlib-wInstall-fileChooserHolder">
+                    <div class="elEsoCommonlib-wInstall-fileLabel ebLabel-text ebLabel-text_required">{{FILE}}</div>
+                    <div class="ebLabel-field">
+                        <input type="file" name="file" class="elEsoCommonlib-wInstall-fileField"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>

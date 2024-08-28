@@ -1,0 +1,576 @@
+#%RAML 0.8
+title: 
+baseUri: https://localhost:xxxx/xxxx/api/v{version}
+version: 1.0
+mediaType: application/json
+
+documentation:
+  - title:  ""
+    content: |
+      ```
+        Ericsson   |   DocNo 1/155 19- CAF 101 10/1   |   Rev B   |   Interface Description
+      ```
+  - title: Introduction
+    content: |
+      The purpose of this document is to be an interface specification
+      with all details of the TOSCA Orchestrator REST API.
+      The major concepts here are Service Model, Service Instance,
+      Execution, and Plugins.
+
+      - Service Model <br>
+        Service Model defines the model of a service which is created from the
+        TOSCA Service Template file and CSAR (Cloud Service Archive). A service
+        model definition includes name, description, main service template file,
+        and the topology template definition of the service.
+
+      - Service Instance <br>
+        Service Instance defines the instance of a service which is created from
+        the Service Model. A service instance definition includes name, service
+        model name, and topology template of a service instance.
+
+      - Plugin <br>
+        Plugin represents an executable which interacts with the target platform
+        or environment for the deployment of a service. Plugins can be loaded to
+        the orchestrator once and can be used in different service template
+        files.
+
+  - title: Supported REST Interfaces
+    content: |
+      TOSCA Orchestrator interface specification contains following REST APIs.
+
+      - Plugin
+        - Load a plugin
+        - List all plugins
+        - Get Plugin
+        - Delete a plugin
+      - Service Model
+        - Create a Service Model with the given blueprint
+        - List all Service Models
+        - Get Service Model
+        - Delete a Service Models
+      - Service Instance
+        - Create a Service Instance from the Service Model
+        - List all Service Instances
+        - Get a Service Instance
+        - Delete a Service Instance
+schemas:   ##############################################TBD
+  - Plugin:   
+  - Plugins:    
+  - ServiceModel:    
+  - ServiceModelMinimal:
+  - ServiceModels:  
+  - ServiceInstance:   
+  - ServiceInstanceMinimal:  
+  - ServiceInstanceData: 
+  - ServiceInstances:  
+
+/plugins:     ##################################draft
+    displayName: Plugin   
+    url: /esoservice/v1/plugins      ################TBD
+    description:
+      Plugin is an executable which interacts with the target platform or
+      environment for the deployment of a service. Plugins can be loaded to
+      the orchestrator once and can be used in different service template files.
+      A plugin file must be an archived python package. A plugin is identified by
+      its name and version in the service template. The name and version of
+      the plugin should be present in setup.py of the archived python package.
+    post:
+      description: Loads a given plugin
+      body:
+        multipart-form/data:
+              formParameters:
+                plugin_file:
+                  description: Plugin file to be loaded
+                  required: true
+                  type: file
+      responses:
+        200:
+          body:
+              application/json:
+                schema: Message
+                example: |
+                  {"message": "Plugin 'k8s-plugin' with version '1.0' loaded successfully"}
+        400:
+          body:
+            application/json:
+              schema: Message
+              example: |
+                {"message": "Malformed content"}
+        409:
+          body:
+            application/json:
+              schema: Message
+              example: |
+                    {"message": "Plugin 'k8s-plugin' with version '1.0' already exists "}
+    get:
+      description: Returns a list of plugins
+      responses:
+        200:
+          body:
+            application/json:
+              schema: Plugins
+              example: |
+                [
+                  "item": [
+                            {
+                              "upload_time": "2018-01-12 11:39:37.534115",
+                               "version": "1.0",
+                               "plugin_name": "sampleplugin",
+                               "id": "d5e3e2d5-1476-473e-a863-f1f27760efc9"
+                             },
+                             {
+                               "upload_time": "2018-01-12 11:40:30.605902",
+                               "version": "2.0",
+                               "plugin_name": "subnet_plugin",
+                               "id": "5335ebc4-db46-419a-817f-e3e8b180ad91"
+                             }
+                           ],
+                  "total": "5001"
+                ]
+
+    /{pluginName}/{pluginVersion}:
+      displayName: Plugin
+      uriParameters:
+        pluginName:
+          displayName: Plugin Name
+          description: Name of the plugin
+          type: string
+          required: true
+          minLength: 1
+          pattern: ^[^,= \n\t+<>#;\\*"]+$
+          example: k8s-plugin
+        pluginVersion:
+          displayName: Plugin Version
+          description: Version of the plugin
+          type: string
+          required: true
+          minLength: 1
+          pattern: ^[^,= \n\t+<>#;\\*"]+$
+          example: 1.0
+      get:
+        description: Returns the plugin with the given name
+        responses:
+          200:
+            body:
+              application/json:
+                schema: Plugin
+                example: |
+                  {
+                    "name": "k8s-plugin",
+                    "version": "1.0",
+                    "uploadTime": "2017-04-20 14:45:23 05:00"
+                  }
+
+          404:
+            body:
+              application/json:
+                schema: Message
+                example: |
+                  {"message": "Plugin 'k8s-plugin' with version '1.0' does not exist"}
+      delete:       ##########################################support it???????
+        description: Deletes the plugin with the given name
+        responses:
+          200:
+            body:
+              application/json:
+                schema: Message
+                example: |
+                  {"message": "Plugin 'k8s-plugin' with version '1.0' deleted successfully"}
+
+          404:
+            body:
+              application/json:
+                schema: Message
+                example: |
+                  {"message": "Plugin 'k8s-plugin' with version '1.0' does not exist"}
+
+          409:
+            body:
+              application/json:
+                schema: Message
+                example: |
+                  {"message": "Plugin 'k8s-plugin' with version '1.0' cannot be deleted, Plugin is in use"}
+
+
+/service-models:
+  displayName: Service Models
+  description:
+    Service Model defines the model of a service which is created from the
+    blueprints. A service model definition includes name, description, 
+    main service template file, and the topology template definition of the service.       
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "description": null,
+                "id": "081a7fea-d142-4b26-9f6c-3da2cd29e82d",
+                "name": "nslcm_1",
+                "service_template_file_name": "nslcm2.yaml",
+                "upload_time": "2017-12-19 13:55:19.672621"
+              },
+
+/servicemodel/{servicemodel_name}/inputs
+  description: List all service models inputs details
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+            {
+                    "inputs": {
+                        "vEPG_VIM": {
+                            "default": "myVzId",
+                            "description": "Vimzone for vEPG Node in the slice\n",
+                            "type": "string"
+                        },
+                        "vMME_VIM": {
+                            "default": "myVzId",
+                            "description": "Vimzone for vMME Node in the slice\n",
+                            "type": "string"
+                        }
+                    }
+                }
+      404:
+        body:
+          text/html:
+            example: |
+              Service model {servicemodel_name} does not exist
+
+/servicemodel/{servicemodel_name}
+  description: get json format of the servicemodel content
+    response:
+      200:
+        body:
+          application/json:
+             example: |
+             {
+                 "imports": [
+                    "plugins.yaml",
+                    "workflows.yaml",
+                    "inputs.yaml",
+                    "vnf-types/cloudify-types.yaml",
+                    "vnf-types/epg.yaml",
+                    "vnf-types/mme.yaml",
+                    "vnf-types/nw-nodes.yaml"
+                  ],
+                  "node_templates": {
+
+                  },
+                  "outputs":{},
+                  "relationships":{},
+                  "tosca_definition_version": "cloudify_dsl_1_2"
+                }
+      404:
+        body:
+          text/html:
+            example: |
+              Service model {servicemodel_name} does not exist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+/serviceinstances:
+  displayName: Service Instances
+  description:
+    Service Instance defines the instance of a service which is created from
+    the Service Model. A service instance definition includes name, service
+    model name, and topology template of a service instance.
+
+  description: get overall deployments details
+    response:
+      200:
+        body:
+          application/json:
+            example: |
+            {
+              "nslcmDeploy": {                                  # nslcm -> ???????????
+                "blueprint_file": "blueprint.yaml",
+                "blueprint_id": "massive-mtc",
+                "executed_workflows": [
+                  {
+                      "associated_deployment": "",
+                      "created_by": "",
+                      "end_date": "2017-06-22T13:42:55Z",
+                      "error_details": "",
+                      "execution_state": 1,
+                      "start_date": "2017-06-22T13:42:52Z",
+                      "status": 100,
+                      "workflow_name": "my_install"
+                  }
+                ],
+                "initialization_time": "2017-06-22T13:35:20Z",
+                "inputs": {
+                    "vMME_VIM": "myVzId",
+                    "vEPG_VIM": "myVzId"
+                },
+                "name": "nslcmDeploy",
+                "path": "/opt/ericsson/nslcm/deployments/nslcmDeploy"
+              }
+            }
+
+/deployments/{deployment_name}
+  description: get deployment details
+  get:
+    response:
+      200:
+        body:
+          application/json:
+            example: |
+            {
+              "UIConfiguration": {
+                "nodeViewer": {
+                    "columnDefinition": {
+                        "basedOnAttribute": "node_type",
+                        "columns": [
+                            {
+                                "attributeValues": [
+                                    {
+                                        "colour": "grey",
+                                        "icon": "vpn",
+                                        "type": "ericsson.nodes.infra"
+                                    }
+                                ],
+                                "name": "VPN"
+                            },
+                            {
+                                "attributeValues": [
+                                    {
+                                        "colour": "grey",
+                                        "icon": "vpn",
+                                        "type": "ericsson.nodes.VRF"
+                                    },
+                                    {
+                                        "colour": "grey",
+                                        "icon": "dns",
+                                        "type": "ericsson.nodes.external"
+                                    }
+                                ],
+                                "name": "External Nodes"
+                            },
+                            {
+                                "attributeValues": [
+                                    {
+                                        "colour": "blue",
+                                        "icon": "default",
+                                        "type": "ericsson.nodes.MME"
+                                    },
+                                    {
+                                        "colour": "blue",
+                                        "icon": "epg",
+                                        "type": "ericsson.nodes.EPG"
+                                    }
+                                ],
+                                "name": "Dedicated Nodes"
+                            }
+                        ]
+                    }
+                }
+                },
+              "servicemodel_file": "blueprint.yaml",
+              "servicemodel_id": "massive-mtc",
+              "deployment_id": "nslcmDeploy",
+              "executed_workflows": [
+                  {
+                      "associated_deployment": "",
+                      "created_by": "",
+                      "end_date": "2017-06-22T13:42:55Z",
+                      "error_details": "",
+                      "execution_state": 1,
+                      "start_date": "2017-06-22T13:42:52Z",
+                      "status": 100,
+                      "workflow_name": "my_install"
+                  }
+              ],
+              "initialization_time": "2017-06-22T13:42:07Z",
+              "inputs": {
+                    "vMME_VIM": "myVzId",
+                    "vEPG_VIM": "myVzId"
+                },
+              "name":"nslcmDeploy",
+              "nodes":
+              [
+               {
+                  "id": "DNS_90a92",
+                  "name": "DNS",
+                  "node_id": "DNS",
+                  "progress": 0,
+                  "relationships": [
+                      {
+                          "target_id": "default.vpn_cbee2",
+                          "target_name": "default.vpn",
+                          "type": "ericsson.relationships.vnf_to_vrf"
+                      }
+                  ],
+                  "runtime_properties": {
+                      "node_id": "nslcmDeploy_DNS_79",
+                      "node_name": "DNS_79",
+                      "node_type": "ericsson.nodes.external"
+                  },
+                  "vapps": []
+               }
+
+              ],
+              "outputs": {
+                  "epg_config": "epg_config",
+                  "epg_node_id": "mysimp_vEPG_94",
+                  "epg_x670config": "epg_x670config",
+                  "mme_config": "mme_config",
+                  "mme_node_id": "mysimp_vMME_93",
+                  "mme_x670config": "mme_x670config"
+              },
+              "path": "/opt/ericsson/nslcm/deployments/simple"
+            }
+      404:
+        body:
+          text/html:
+            example: |
+              Deployment does not exist.
+      500:
+        body:
+          text/html:
+            example: |
+              Other error detail
+  post:
+     description: Create service instance with specific config params
+     body:
+       application/json:
+         example: |
+         {
+                "servicemodel_name": "simple",
+                "inputs": {"vMME_VIM": "myVzId", "vMME_VIM":"myVzId"},
+                "workflow_name": "my_install",
+                "workflow_inputs":{},
+                "blueprint_file": "blueprint.yaml"
+         }
+     response:
+       200:
+          body:
+            text/html:
+              example: |
+                 Request Accepted
+       400:
+          body:
+            text/html:
+              example: |
+                 Service instance with id {serviceinstance_name} already exists |
+                 Service model {servicemodel_name} does not exist |
+       500:
+          body:
+            text/html:
+              example: |
+                 Other error detail
+  put:
+     description: Execute a workflow towards to a initialized service instance
+     body:
+       application/json:
+         example: |
+         {
+            "workflow_name":"my_install",
+            "workflow_inputs": {}
+         }
+     response:
+       200:
+          body:
+            text/html:
+              example: |
+                 Request Accepted
+       500:
+          body:
+            text/html:
+              example: |
+                 Error Details...
+  delete:
+     description: Delete a service instance
+     response:
+       200:
+          body:
+            text/html:
+              example: |
+                 Request Accepted
+       404:
+          description: Service instance {serviceinstance_name} does not exist
+          body:
+            text/html:
+              example: |
+                 Service instance {serviceinstance_name} does not exist
+       500:
+          body:
+            text/html:
+              example: |
+                 Error Details
+
+/serviceinstance/{serviceinstance_name}/outputs
+  description: get service instance outputs
+    response:
+      200:
+        body:
+          application/json:
+            example: |
+            {
+                "epg_config": "epg_config",
+                "epg_node_id": "mysimp_vEPG_94",
+                "epg_x670config": "epg_x670config",
+                "mme_config": "mme_config",
+                "mme_node_id": "mysimp_vMME_93",
+                "mme_x670config": "mme_x670config"
+            }
+      404:
+        description: Service instance {serviceinstance_name} does not exist
+        body:
+          text/html:
+            example: |
+              Service instance does not exist
+      500:
+        body:
+          text/html:
+            Error details
+
+
+/serviceinstance/{serviceinstance_name}/log/{log_name}
+  description: get service instance log details
+    response:
+      200:
+        body:
+            text/html:
+            example: |
+            --- start ---                 ######################????????????????????????????????????????????????????????????????/
+            Initiated simple/blueprint.yaml
+                If you make changes to the blueprint, run 'cfy local init -p simple/blueprint.yaml' again to apply them
+
+                --- end ---
+
+            ...successfully initialised...
+      500:
+        body:
+            text/html:
+            example: |
+              Error in opening the log file
+

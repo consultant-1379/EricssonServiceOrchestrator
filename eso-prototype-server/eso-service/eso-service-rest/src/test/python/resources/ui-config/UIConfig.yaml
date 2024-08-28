@@ -1,0 +1,25 @@
+UIConfiguration:
+
+    nodeViewer:
+
+        columnDefinition:
+            basedOnAttribute: node_type
+            columns:
+                - name: External Nodes
+                  attributeValues:
+                      - type: ericsson.nodes.external
+                        icon: default
+                        colour: green
+                - name: Dedicated Nodes
+                  attributeValues:
+                      - type: ericsson.nodes.MME
+                        icon: default
+                        colour: green
+                      - type: ericsson.nodes.EPG
+                        icon: default
+                        colour: green
+                - name: VPN
+                  attributeValues:
+                      - type: ericsson.nodes.VPN
+                        icon: default
+                        colour: green

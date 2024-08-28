@@ -1,0 +1,27 @@
+# Upload blueprint to TOSCA-O
+POST http://127.0.0.1:7001/toscao/api/v2.0/service-models
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="nslcm.yaml"
+
+< ../toscao/blueprints/nslcm.yaml
+--boundary
+Content-Disposition: form-data; name="name"
+
+nslcm_1
+--boundary
+
+###
+
+# Upload plugin to TOSCA-O
+POST http://127.0.0.1:7001/toscao/api/v2.0/plugins
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="plugin_file"; filename="nslcm_plugin-1.0-py27-none-any.wgn"
+
+< ../toscao/plugins/nslcm_plugin-1.0-py27-none-any.wgn
+--boundary
+
+###

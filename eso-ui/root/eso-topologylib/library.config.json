@@ -1,0 +1,6 @@
+{
+	"exports": {
+		"eso-topologylib/NodeChart": "eso-topologylib/nodechart/NodeChart"
+
+	}
+}

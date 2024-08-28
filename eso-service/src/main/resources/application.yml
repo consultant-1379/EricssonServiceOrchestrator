@@ -1,0 +1,50 @@
+### This is the main way to configure the application (other than annotations).
+### This file is in Yaml format but you can also configure spring boot using the traditional
+### Java properties file format. 
+
+spring.jmx:
+   enabled: false
+
+server:
+  port: 8090
+  security:
+    enabled: false # management port is internal only. no need to secure it.
+
+#todo: make sure to always enable security in production
+security:
+  basic:
+    enabled: false
+
+#management endpoints on a separate port
+management:
+  port: 8091
+  security:
+    enabled: false # management port is internal only. no need to secure it.
+
+#default project info followed by actual injected pom-specified values.
+project:
+  name: eso-service-as-a-microservice
+  version: 0.1
+  description: initial/prototype eso-service-as-a-microservice
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+
+eso.service:
+  name: 'default profile:'
+---
+spring:
+  profiles: test
+
+eso.service:
+  name: 'test profile:'
+  
+logging:
+  file: eso-service.log
+  org.hibernate: DEBUG
+  org.springframework.web: DEBUG
+
+ 

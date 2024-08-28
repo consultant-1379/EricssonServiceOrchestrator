@@ -1,0 +1,48 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: log
+  namespace: eso-logging-kubernetes-test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: log
+    spec:
+      containers:
+      - name: log
+        image: armdocker.rnd.ericsson.se/proj-pigs/gs-log
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: APP_NAME
+          value: $(NAMESPACE)-log
+        - name: ELASTICSEARCH_HOSTS
+          value: datalake-service
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        ports:
+        - name: syslog-tcp
+          containerPort: 5014
+          protocol: TCP
+        - name: syslog-udp
+          containerPort: 5014
+          protocol: UDP
+        - name: log4j
+          containerPort: 5015
+          protocol: TCP
+        - name: filebeat
+          containerPort: 5045
+          protocol: TCP
+        - name: http-api
+          containerPort: 5080
+          protocol: TCP
+        - name: logstash
+          containerPort: 9600
+          protocol: TCP

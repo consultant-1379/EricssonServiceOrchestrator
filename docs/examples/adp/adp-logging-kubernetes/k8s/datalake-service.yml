@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: datalake-service
+  namespace: eso-logging-kubernetes-test
+spec:
+  selector:
+    component: datalake
+  type: NodePort
+  ports:
+  - name: http
+    port: 9200
+    protocol: TCP
+    nodePort: 32101
+  - name: native
+    port: 9300
+    protocol: TCP
+    nodePort: 32102

@@ -1,0 +1,34 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: log-service
+  namespace: eso-logging-kubernetes-test
+spec:
+  selector:
+    component: log
+  type: NodePort
+  ports:
+  - name: syslog-tcp
+    port: 5014
+    protocol: TCP
+    nodePort: 32103
+  - name: syslog-udp
+    port: 5014
+    protocol: UDP
+    nodePort: 32103
+  - name: log4j
+    port: 5015
+    protocol: TCP
+    nodePort: 32104
+  - name: filebeat
+    port: 5045
+    protocol: TCP
+    nodePort: 32105
+  - name: http-api
+    port: 5080
+    protocol: TCP
+    nodePort: 32107
+  - name: logstash
+    port: 9600
+    protocol: TCP
+    nodePort: 32108

@@ -1,0 +1,39 @@
+# Get Log Service status
+GET http://dawn.seli.gic.ericsson.se:32107/log/api/v1/health
+
+###
+
+# Send event to Log Service that will be stored in `mytestlogpane` index.
+POST http://dawn.seli.gic.ericsson.se:32107/log/api/v1/events
+Content-Type: application/json
+
+{
+  "events": [
+    {
+      "message": "This is test message",
+      "level": "warn"
+    }
+  ]
+}
+
+###
+
+# Retrieve Elasticsearch indices
+GET http://dawn.seli.gic.ericsson.se:32101/_cat/indices?v
+
+###
+
+# Search Elasticsearch index
+POST http://dawn.seli.gic.ericsson.se:32101/auditlogs-2017.12.07/_search?pretty
+Content-Type: application/json
+
+{
+    "size": 50
+}
+
+###
+
+# Delete Elasticsearch index
+DELETE http://192.168.56.1:9200/auditlogs-2017.12.06
+
+###

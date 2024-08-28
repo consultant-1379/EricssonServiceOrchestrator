@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <Syslog name="Syslog" format="RFC5424" host="${env:SYSLOG_HOST}" port="${env:SYSLOG_PORT}"
+                protocol="TCP" appName="${env:APP_NAME}" includeMDC="true"
+                facility="LOCAL0" enterpriseNumber="18060" newLine="true"
+                messageId="Audit" id="App" mdcId="mdc" />
+        <Socket name="Socket" host="${env:SOCKET_HOST}" port="${env:SOCKET_PORT}">
+            <JsonLayout properties="true"/>
+        </Socket>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Syslog"/>
+            <AppenderRef ref="Socket"/>
+        </Root>
+    </Loggers>
+</Configuration>

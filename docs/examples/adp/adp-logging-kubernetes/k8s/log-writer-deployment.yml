@@ -1,0 +1,31 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: log-writer
+  namespace: eso-logging-kubernetes-test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: log-writer
+    spec:
+      containers:
+      - name: log-writer
+        image: skibish/dls
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: APP_NAME
+          value: log-writer
+        - name: SYSLOG_HOST
+          value: log-service
+        - name: SYSLOG_PORT
+          value: "5014"
+        - name: SOCKET_HOST
+          value: log-service
+        - name: SOCKET_PORT
+          value: "5015"
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi

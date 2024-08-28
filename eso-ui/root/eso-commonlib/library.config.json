@@ -1,0 +1,36 @@
+{
+    "exports": {
+
+        "eso-commonlib/Constants": "eso-commonlib/constants/Constants",
+        "eso-commonlib/UrlConstants": "eso-commonlib/constants/UrlConstants",
+        "eso-commonlib/HttpConstants": "eso-commonlib/constants/HttpConstants",
+
+
+        "eso-commonlib/DialogUtils": "eso-commonlib/utils/DialogUtils",
+        "eso-commonlib/Utils": "eso-commonlib/utils/Utils",
+
+        "eso-commonlib/ReplaceNullCell": "eso-commonlib/tablecells/ReplaceNullCell",
+        "eso-commonlib/BoldFontCell": "eso-commonlib/tablecells/BoldFontCell",
+        "eso-commonlib/JSONValueCell": "eso-commonlib/tablecells/JSONValueCell",
+
+
+
+        "eso-commonlib/FileUploadDialog": "eso-commonlib/widgets/install/FileUpLoadDialog",
+        "eso-commonlib/FilterTextField": "eso-commonlib/widgets/filterTextField/FilterTextField",
+        "eso-commonlib/LastRefreshedLabel": "eso-commonlib/widgets/lastrefreshed/LastRefreshedLabel",
+        "eso-commonlib/RefreshWidget": "eso-commonlib/widgets/refresh/RefreshWidget",
+        "eso-commonlib/JsonDisplayer": "eso-commonlib/widgets/jsonDisplayer/JsonDisplayer",
+
+        "eso-commonlib/FormInputRegion": "eso-commonlib/regions/formInput/FormInputRegion",
+
+        "eso-commonlib/FetchWorkFlowHandler": "eso-commonlib/workflow/FetchWorkFlowHandler",
+
+        "eso-commonlib/NetAjaxInterceptor": "eso-commonlib/networkHandling/NetAjaxInterceptor",
+        "eso-commonlib/AjaxService": "eso-commonlib/networkHandling/AjaxService",
+
+        "eso-commonlib/GeneralPaginatedLayoutTable": "eso-commonlib/paginatedlayout/GeneralPaginatedLayoutTable"
+
+
+
+    }
+}

@@ -1,0 +1,242 @@
+{
+    "_class_comment1": "*** No comments allowed in this JSON file or will have parse error. 'title' is required for i18n! plugin to work.",
+    "_class_comment1a": "*** Will use this file as the root dictionary for all apps",
+    "_class_comment1b": "*** Server should pass specific exception keys in serverExceptionDescriptionKeys",
+    "_class_comment1c": "*** Enums on server can be translated for table cell presentation if contained in serverConstants tag",
+
+
+    "UNDEFINED_VALUE": "--",
+    "NO_WORK_FLOW_EXECUTED_MESSAGE": "No workflow executed",
+    "CLEAR_SELECTION": "Clear Selection",
+    "CLEAR_SELECTION_TOOLTIP": "Clear current selection to show default menu options",
+    "TABLE_SETTINGS_SELECT_LABEL": "Select",
+    "TABLE_SETTINGS_ALL": "All",
+    "TABLE_SETTINGS_NONE": "None",
+    "EXECUTION_PLAN_DETAILS_MENU_TOOLTIP" : "View Execution Plan Details",
+
+
+    "serverExceptionDescriptionKeys": {
+        "ESO_TEST_EXCEPTION_FROM_SERVER": "Test Special Server Message",
+        "SERVICE_TEMPLATE_NAME_ALREADY_EXISTS": "Duplicate Service Template Name already exists in the system",
+        "503": "Service Unavailable. Please try again later or contact your System Administrator.",
+        "504": "Gateway Timeout. Please try again later or contact your System Administrator."
+    },
+
+
+    "titles": {
+        "NETWORK_SLICES_TITLE": "Network Slices",
+        "MAIN_DASH_BOARD_TITLE": "",
+        "START_WORKFLOW": "Start Workflow",
+        "INSTALL_SERVICE_TEMPLATE": "Install Service Template",
+
+        "SERVICE_TEMPLATE_TABLE_HEADER": "Service Templates",
+        "TOPOLOGY": "Topology",
+        "EXECUTION_PLAN": "Execution plan for {0}:",
+        "EXECUTION_PLAN_DETAILS_TITLE": "Execution Plan Details"
+    },
+
+    "columnTitles": {
+
+        "SERVICE_TEMPLATE_NAME": "Name",
+        "SERVICE_TEMPLATE_FILE_NAME": "Service Template File Name",
+        "UP_LOAD_TIME": "Upload Time",
+        "DESCRIPTION": "Description",
+        "ATTRIBUTE" : "Attribute",
+        "VALUE": "Value"
+
+    },
+
+    "filterTextField": {
+        "FILTER_TEXT_FIELD_PLACEHOLDER": "Enter filter text and press ENTER key",
+        "FILTER_OFF_FILTER_TEXT_FIELD_ICON_TOOLTIP": "Full list displayed : Enter text to filter display",
+        "FILTER_ON_FILTER_TEXT_FIELD_ICON_TOOLTIP": "Filter applied: Clear text to cancel filter",
+        "FILTER_APPLIED_HEADER": "Filter applied"
+    },
+
+    "links": {
+        "SERVICE_TEMPLATE_APP_LINK_NAME": "Service Template Management"
+    },
+
+    "fileUpLoad": {
+        "NAME": "Name",
+        "DESCRIPTION": "Description",
+        "FILE": "File",
+        "SERVICE_TEMPLATE_NAME_PLACEHOLDER": "Service Template Name",
+        "DESCRIPTION_PLACEHOLDER": "Description"
+
+    },
+
+    "createSlice": {
+        "INSTALL_SERVICE_TEMPLATES": "Install Service Template(s)",
+        "CREATE_SLICE_DETAILS_TAB_TITLE": "Details",
+        "CREATE_SLICE_WORKFLOW_TAB_TITLE": "Workflow",
+        "NAME": "Name",
+        "SERVICE_TEMPLATE": "Service Template",
+        "NETWORK_SLICE_NAME_DESCRIPTION": "Network slice (instance) name",
+        "REQUIRED_MESSAGE": " is a required attribute",
+        "SELECT_FROM_LIST_PLACEHOLDER": "Select from list",
+        "SERVICE_TEMPLATES_SELECT_BOX_DESCRIPTION": "Select service template item",
+        "VALUE_REQUIRED_MESSAGE": "Value required",
+        "VALID_JSON_REQUIRED_MESSAGE": "Value must be valid JSON",
+        "WORK_FLOW_OPTION_NONE": "None",
+        "ENABLED": "enabled",
+        "DISABLED": "disabled",
+        "VALIDATION_INVALID_CHARACTERS": "Invalid characters in value",
+        "WORK_FLOW_NAME_LABEL_AND_ID": "Work Flow Name",
+        "WORK_FLOW_SELECT_BOX_DESCRIPTION": "Select workflow item or choose 'None' option"
+
+
+    },
+
+    "toasts": {
+        "SLICE_CREATED_SUCCESS_TOAST": "Create {0} request accepted",
+        "SLICE_DELETE_SUCCESS_TOAST": "Delete {0} request accepted",
+        "SLICE_START_WORK_FLOW_SUCCESS_TOAST": "Start workflow for {0} accepted",
+        "SERVICE_TEMPLATE_DELETE_SINGULAR_SUCCESS_TOAST": "Deleted Service Template",
+        "SERVICE_TEMPLATES_DELETE_SUCCESS_TOAST": "Deleted Service Templates",
+        "INSTALL_SUCCESS_TOAST": "Install file request accepted"
+
+    },
+
+
+    "captions": {
+        "CANCEL": "Cancel",
+        "CREATE_SLICE": "Create Slice",
+        "DELETE_SLICE": "Delete Slice",
+        "DELETE_NETWORK_SLICE": "Delete Network Slice",
+        "START_WORK_FLOW": "Start Workflow",
+        "SAVE_AND_EXECUTE": "Save & Execute",
+        "SAVE": "Save",
+        "NO": "No",
+        "CONTINUE": "Continue",
+        "OK": "OK",
+        "STAY_ON_PAGE": "Stay on this page",
+        "LEAVE_PAGE": "Leave this page",
+        "REFRESH_ON_PAGE": "Refresh this page",
+        "REFRESH_STAY_ON_PAGE": "Stay on this page",
+        "INSTALL": "Install",
+        "DELETE_SERVICE_TEMPLATE": "Delete Service Template",
+        "DELETE_SERVICE_TEMPLATES": "Delete Service Templates",
+        "REFRESH": "Refresh"
+
+    },
+
+    "networkSliceList": {
+        "NETWORK_SLICE": "Network Slice",
+        "NETWORK_SLICE_INSTALLED": "Complete",
+        "NETWORK_SLICE_FAILED": "Failed",
+        "SERVICE_TEMPLATE_ID": "Service Template Name",
+        "INITIALIZATION_TIME": "Initialization Time",
+        "LAST_WORK_FLOW_NAME": "Last Workflow",
+        "PROGRESS_STATUS_EXECUTING": "Execution Progress"
+
+    },
+
+    "loadingMessages": {
+        "LOADING_NETWORK_SLICES": "Loading Network Slices",
+        "LOADING_EXISTING_SERVICE_TEMPLATES": "Loading Service Templates",
+        "LOADING_INPUTS_FOR_SERVICE_TEMPLATE": "Loading inputs for {0}",
+        "LOADING_WORK_FLOWS_FOR_SERVICE_TEMPLATE": "Loading work-flows for {0}",
+        "LOADING_CREATING_NETWORK_SLICE": "Creating {0} Network Slice",
+        "LOADING_DELETING_SLICE": "Deleting {0} Network Slice",
+        "LOADING_DELETING_SINGULAR_SERVICE_TEMPLATE": "Deleting {0} Service Template",
+        "LOADING_DELETING_SERVICE_TEMPLATES": "Deleting {0} Service Templates",
+        "LOADING_INSTALLING_FILE": "Installing {0} File",
+        "LOADING_EXECUTION_PLAN" : "Loading {0} Execution Plan"
+    },
+
+    "forbiddenActionMessages": {
+        "READ_NETWORK_SLICES": "view Network Slices",
+        "LOAD_SERVICE_TEMPLATES": "load service templates",
+        "LOAD_INPUTS_FOR_SERVICE_TEMPLATE": "load inputs for service template {0}",
+        "LOAD_WORK_FLOWS_FOR_SERVICE_TEMPLATE": "load work flows for service template {0}",
+        "START_WORK_FLOW": "start a workflow",
+        "CREATE_NETWORK_WORK_SLICE": "create and install a Network Slice",
+        "DELETE_NETWORK_SLICE": "delete Network Slice {0}",
+        "VIEW_SERVICE_TEMPLATES": "view Service Templates",
+        "INSTALL_FILE_ON_SERVER": "install a File",
+        "DELETE_SERVICE_TEMPLATES": "delete Service Templates",
+        "VIEW_EXECUTION_PLAN": "view Execution Plan"
+
+    },
+
+    "inline": {
+
+        "UNABLE_TO_RETRIEVE_DATA": "Unable to Retrieve Data",
+        "SERVER_ISSUE_INLINE_MESSAGE": "The server encountered an internal error. Please try again later or contact your System Administrator",
+        "NO_NETWORK_SLICES_FOUND_HEADER": "No Network Slices Exist",
+        "NO_NETWORK_SLICES_FOUND": "Creation of a Network Slice is required to proceed",
+        "NO_WORK_FLOW_FOUND_HEADER": "No Workflow exists",
+        "NO_WORK_FLOW_FOUND": "No workflow found for Network Slice '{0}' using Service Template '{1}'",
+
+        "NO_SERVICE_TEMPLATES_TO_DISPLAY_GRID_HEADER": "No Service Templates Found",
+        "NO_SERVICE_TEMPLATES_TO_DISPLAY_GRID_MESSAGE": "Use {0} button to add a Service Template",
+
+        "NO_NETWORK_SLICE_SELECTED_HEADER": "No Network Slice Selected",
+        "NO_NETWORK_SLICE_SELECTED": "Select a Network Slice to view Network Slice Information",
+
+        "MAIN_PAGE_NO_SLICES_HEADER": "No Network Slices Exist",
+        "MAIN_PAGE_NO_SLICES_DESCRIPTION_LINE_ONE": "To create a Network Slice a Service Template must be installed.",
+        "MAIN_PAGE_NO_SLICES_DESCRIPTION_LINE_TWO": "Service Templates can be installed by using the <a href={0}>Service Template Management</a> link.",
+        "MAIN_PAGE_NO_SLICES_DESCRIPTION_LINE_THREE": "A Network Slice can then be created by choosing the {0} button"
+
+
+    },
+
+    "lastRefreshedLabels": {
+        "LAST_REFRESHED_START_MESSAGE": "Last refreshed 30 seconds ago",
+        "LAST_REFRESHED_DAYS_HOURS_MINS_SECS": "Last refreshed {0}{1}{2}{3}{4}{5}{6}{7}ago",
+        "DAY": " day ",
+        "DAYS": " days ",
+        "HOUR": " hour ",
+        "HOURS": " hours ",
+        "MINUTE": " minute ",
+        "MINUTES": " minutes ",
+        "SECOND": " second ",
+        "SECONDS": " seconds "
+    },
+
+
+    "dialogMessages": {
+        "HEADER_UNABLE_TO_CREATE_NETWORK_SLICE": "An error occurred when creating Network Slice",
+        "HEADER_UNABLE_TO_DELETE_NETWORK_SLICE": "An error occurred when deleting Network Slice",
+
+        "HEADER_SAVE_AND_EXECUTE_NETWORK_SLICE": "Save And Execute Network Slice",
+        "SAVE_AND_EXECUTE_NETWORK_SLICE_MESSAGE": "This action will execute a workflow.",
+        "SAVE_AND_EXECUTE_NETWORK_SLICE_MESSAGE_LINE2": "Are you sure you want to Save and Execute '{0}'?",
+
+        "HEADER_SAVE_NETWORK_SLICE": "Save Network Slice",
+        "SAVE_NETWORK_SLICE_MESSAGE": "This action will save a Network Slice without executing a workflow.",
+        "SAVE_NETWORK_SLICE_MESSAGE_LINE2": "Are you sure you want to Save '{0}'?",
+
+
+        "HEADER_DELETE_NETWORK_SLICE": "Delete Network Slice",
+        "DELETE_NETWORK_SLICE_MESSAGE": "Are you sure you want to delete '{0}'?",
+
+        "HEADER_DELETE_SERVICE_TEMPLATE_SINGULAR": "Delete Service Template",
+        "HEADER_DELETE_SERVICE_TEMPLATES": "Delete Service Templates",
+        "DELETE_SERVICE_TEMPLATE_SINGULAR_MESSAGE": "Are you sure you want to delete '{0}'?",
+        "DELETE_SERVICE_TEMPLATES_MESSAGE": "Are you sure you want to delete {0} Service Templates?",
+
+        "HEADER_UNABLE_TO_DELETE_SERVICE_TEMPLATE": "Failed to Delete Service Template",
+        "HEADER_UNABLE_TO_DELETE_SERVICE_TEMPLATES": "Failed to Delete Service Templates",
+
+        "VALID_BASIC_LICENCE_HEADER": "Valid License Required",
+        "VALID_BASIC_LICENSE_REQUIRED_WARNING": "<p>A valid license is required for this application. </p><p>Contact your System Administrator to activate this application or return to the <a href=''>Application Launcher</a></p>.",
+        "SERVER_NOT_FOUND_HEADER": "Server Not Found",
+        "SERVER_NOT_FOUND_HEADER_WARNING": "<p>The requested resource cannot be found. </p><p>Please try again later or return to the <a href=''>Application Launcher</a></p>.",
+        "STANDARD_DIALOG_ERROR_MESSAGE_CONTENT": "The server encountered an internal error.",
+        "STANDARD_DIALOG_ERROR_MESSAGE_OPTIONAL_CONTENT": "Please try again later or contact your System Administrator.",
+        "UNAUTHORIZED_DIALOG_HEADER": "Unauthorized to {0}",
+        "UNAUTHORIZED_DIALOG_CONTENT": "Your role does not allow you to {0}.",
+        "UNAUTHORIZED_DIALOG_CONTENT_SECOND_LINE": "Contact your Security Administrator for Help.",
+        "CONFIRM_NAVIGATION_HEADER": "Confirm Navigation",
+        "UNSAVED_CHANGES_WARNING": "You have unsaved changes that will be lost if you leave this page.",
+        "UNSAVED_CHANGES_AREA_WARNING": "You have unsaved changes that will be lost if you leave this area.",
+        "CONFIRM_REFRESH_HEADER": "Confirm Refresh",
+        "UNSAVED_CHANGES_ON_REFRESH_WARNING": "You have unsaved changes that will be lost if you refresh."
+
+
+    }
+
+}

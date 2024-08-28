@@ -1,0 +1,68 @@
+.eaEsoUi-wNeSliceListItem {
+
+  position: relative;
+  right: 25px; // line up with title (as long as using tree of tables)
+
+  &-table {
+    padding-bottom: 5px;
+    table-layout: fixed;
+    width: 450px;
+    border-bottom: 1px solid lightgray;
+
+    &-row {
+      height: 18px; // give room for icons
+    }
+  }
+
+  &-progressRow {
+    display: none;
+  }
+
+  &-tdLabel {
+    font-weight: bold;
+    padding-right: 20px;
+    width: 130px;
+  }
+
+  &-tdValue {
+    padding-right: 20px;
+    width: 150px;; // fix colum width so align icons veritcally
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+
+  &-tdIconValue {
+    width: 40px;; // fix colum width so align icons veritcally
+  }
+
+  &-status {
+
+    &-icon {
+      display: none;
+    }
+
+
+    &-status0 { // in progress - anmiate for a spining hour glass
+      background: url('@{resources-url}/eso-commonlib/svg/Hourglass.svg');
+      background-repeat: no-repeat;
+      display: none;
+      animation: eaEsoUi-wNeSliceListItem-spin 2s linear infinite;
+    }
+
+    @keyframes eaEsoUi-wNeSliceListItem-spin{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
+    }
+
+    &-status1 { // success
+      display: none;
+      cursor: default !important;
+
+    }
+    &-status2 { // error
+      display: none; // error one can have the pointer cursor as has info popup attached
+    }
+  }
+}

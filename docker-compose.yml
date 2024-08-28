@@ -1,0 +1,74 @@
+version: '3'
+
+volumes:
+  esdata:
+    driver: local
+
+services:
+  datalake:
+    image: armdocker.rnd.ericsson.se/proj-pigs/datalake-es
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - esdata:/opt/elasticsearch/data
+    ports:
+      - 9200:9200 # Elasticsearch HTTP API
+      - 9300:9300 # Elasticsearch native transport
+    environment:
+      - cluster.name=datalake
+      - node.name=datalake-node-1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  log:
+    image: armdocker.rnd.ericsson.se/proj-pigs/gs-log
+    ports:
+      - 5014:5014/tcp # Syslog
+      - 5014:5014/udp # Syslog
+      - 5015:5015/tcp # Log4j
+      - 5045:5045/tcp # Filebeat
+      - 5080:5080/tcp # HTTP API
+      - 9600:9600/tcp # Logstash
+    environment:
+      - ELASTICSEARCH_HOSTS=datalake:9200
+    depends_on:
+      - datalake
+
+  toscao:
+    image: armdocker.rnd.ericsson.se/proj-tosca_o/toscao:1.0.1
+    ports:
+      - 7001:7001
+    environment:
+      - TOSCAO_LOG_LEVEL=DEBUG
+      
+  eso-service:
+    image: eso-micro-service-1.0:latest
+    build: eso-service
+    ports:
+      - 8090:8090
+      - 8091:8091
+    environment:
+      - HOST=http://toscao
+      - TOSCAO_PORT=7001
+      - ADP_LOG_HOST=http://log
+      - ADP_LOG_PORT=5080
+    depends_on:
+      - toscao
+      - log
+
+frontend-display:
+    container_name: frontend
+    image: frontend
+    expose:
+      - "80"
+    ports:
+      - 80:80
+    links:
+      - eso-service

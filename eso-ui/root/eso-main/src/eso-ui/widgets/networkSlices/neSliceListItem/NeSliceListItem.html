@@ -1,0 +1,46 @@
+<e-link src="./NeSliceListItem.less"/>
+<div class="eaEsoUi-wNeSliceListItem">
+
+    <table class="eaEsoUi-wNeSliceListItem-table">
+
+        <tr class="eaEsoUi-wNeSliceListItem-table-row">
+            <td class="eaEsoUi-wNeSliceListItem-tdLabel">{{NETWORK_SLICE}}</td>
+            <td class="eaEsoUi-wNeSliceListItem-tdValue eaEsoUi-wNeSliceListItem-networkSliceID-value"></td>
+            <td class="eaEsoUi-wNeSliceListItem-tdIconValue"></td>
+
+
+        </tr>
+        <tr class="eaEsoUi-wNeSliceListItem-table-row">
+            <td class="eaEsoUi-wNeSliceListItem-tdLabel">{{SERVICE_TEMPLATE_ID}}</td>
+            <td class="eaEsoUi-wNeSliceListItem-tdValue eaEsoUi-wNeSliceListItem-serviceTemplateName-value"></td>
+            <td class="eaEsoUi-wNeSliceListItem-tdIconValue"></td>
+
+        </tr>
+        <tr class="eaEsoUi-wNeSliceListItem-table-row">
+            <td class="eaEsoUi-wNeSliceListItem-tdLabel">{{INITIALIZATION_TIME}}</td>
+            <td class="eaEsoUi-wNeSliceListItem-tdValue eaEsoUi-wNeSliceListItem-initializationTime-value"></td>
+            <td class="eaEsoUi-wNeSliceListItem-tdIconValue"></td>
+        </tr>
+        <tr class="eaEsoUi-wNeSliceListItem-table-row  eaEsoUi-wNeSliceListItem-progressRow">
+            <td class="eaEsoUi-wNeSliceListItem-tdLabel eaEsoUi-wNeSliceListItem-progressExecutionLabel">{{PROGRESS_STATUS_EXECUTING}}</td>
+            <td class="ebProgressBar">
+                <div class="ebProgressBar-content">
+                    <progress class="ebProgressBar-bar eaEsoUi-wNeSliceListItem-progressValue" min="0" max="100" value="5"></progress>
+                    <span class="ebProgressBar-value eaEsoUi-wNeSliceListItem-progressPercent">5%</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="eaEsoUi-wNeSliceListItem-table-row">
+            <td class="eaEsoUi-wNeSliceListItem-tdLabel">{{LAST_WORK_FLOW_NAME}}</td>
+            <td class="eaEsoUi-wNeSliceListItem-tdValue eaEsoUi-wNeSliceListItem-lastWorkFlowName-value"></td>
+            <td class="eaEsoUi-wNeSliceListItem-tdIconValue eaEsoUi-wNeSliceListItem-networkSliceID-status">
+
+                <i class="eaEsoUi-wNeSliceListItem-status-status0 eaEsoUi-wNeSliceListItem-status-icon ebIcon"></i>
+                <i class="eaEsoUi-wNeSliceListItem-status-status1 eaEsoUi-wNeSliceListItem-status-icon ebIcon ebIcon_tick"></i>
+                <i class="eaEsoUi-wNeSliceListItem-status-status2 eaEsoUi-wNeSliceListItem-status-icon"></i>
+
+            </td>
+        </tr>
+    </table>
+
+</div>

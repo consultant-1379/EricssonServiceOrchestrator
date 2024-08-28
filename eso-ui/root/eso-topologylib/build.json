@@ -1,0 +1,30 @@
+{
+    "parent": "$(parentJson)/library.json",
+    "defaultPhase": "package",
+    "properties": {
+        "package": "eso-topologylib",
+        "name": "EsoTopologylib",
+        "version": "1.0.0",
+        "skeleton": "2.3.1",
+        "skeletonType": "library"
+    },
+    "phases": {
+        "package": {
+            "depends": [
+                "clean",
+                "analyze",
+                "test",
+                "compile",
+                "compress"
+            ]
+        }
+    },
+    "dependencies": {
+        "jscore": "1.7.17",
+        "i18n": "2.4.5",
+        "layouts": "1.8.7",
+        "container": "1.14.12",
+        "assets": "1.8.7",
+        "widgets": "1.8.22"
+    }
+}

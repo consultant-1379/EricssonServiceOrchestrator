@@ -1,0 +1,50 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+imports:
+ - aria-1.0
+
+ 
+node_types:
+  subnet:
+    derived_from: tosca.nodes.Root
+    properties:
+      host:
+        type: string
+      name:
+        type: string
+
+topology_template:
+
+  inputs:
+    subnetwork_name:
+      type: string
+      description: The name of the subnetwork instance
+      
+    subnetwork_blueprint:
+      type: string
+      description: The name of the subnetwork instance
+      default: massive-mtc
+    
+  node_templates:
+    subnet-massive-mtc:
+      type: subnet
+      properties:
+        host: "http://131.160.162.95"
+        name: {get_input: subnetwork_name }
+      interfaces:
+        Standard:
+          create: 
+             implementation: nslcm_plugin > main.client.create_deployment
+             inputs:
+                blueprint_id: {get_input: subnetwork_blueprint }
+
+          stop:
+             implementation: nslcm_plugin > main.client.delete_deployment
+
+  policies:
+    nslcm_plugin:
+      type: aria.Plugin
+      description: policy_description
+      properties:
+        version: 1.0
+        enabled: True

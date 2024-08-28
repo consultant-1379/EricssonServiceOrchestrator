@@ -1,0 +1,17 @@
+{
+    "mappings": [
+
+        {
+            "source": "/eso-service",
+            "dest": "/eso-service"
+        }
+
+
+    ],
+    "host": "localhost",
+    "port": 8090,
+    "headers": {
+        "X-Custom-Header": "cdt"
+    }
+} 
+ 

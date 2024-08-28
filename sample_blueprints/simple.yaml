@@ -1,0 +1,43 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+imports:
+ - aria-1.0
+
+ 
+node_types:
+  nodeA:
+    derived_from: tosca.nodes.Root
+    properties:
+      name:
+        type: string
+        
+  nodeB:
+    derived_from: tosca.nodes.Root
+    properties:
+      name:
+        type: string
+
+
+topology_template:
+
+  inputs:
+    node_name:
+      type: string
+      description: The name of the node instance
+    plugin_parameter:
+      type: string
+      description: The plugin parameter 
+
+  node_templates:
+    nodeA_test:
+      type: nodeA
+      properties:
+        name: {get_input: node_name }
+      
+    nodeB_test:
+      type: nodeB
+      properties:
+        name: {get_input: node_name }
+      
+
+
